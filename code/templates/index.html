@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>个性化图像生成应用</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            background-image: url("static/1.jpg");
+            font-family: Arial, sans-serif;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+
+        select {
+            margin-bottom: 20px;
+        }
+
+        button[type="submit"] {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #4cae4c; /* 鼠标悬停时的颜色 */
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        img.input-image {
+            max-width: 400px;
+            max-height: 400px;
+        }
+
+        img.style-image {
+            max-width: 400px;
+            max-height: 400px;
+        }
+
+
+    </style>
+<body>
+<h1>个性化图像生成应用</h1>
+<form action="/" method="POST" enctype="multipart/form-data">
+    <p>
+        <label for="input-image">上传图片:</label>
+        <input type="file" id="input-image" name="input-image" accept="image/*" required>
+        <img id="input-preview" src="#" alt="Input Image Preview" style="display:none;" class="input-image">
+    </p>
+    <p>
+        <label for="style-image">风格图片:</label>
+        <input type="file" id="style-image" name="style-image" accept="image/*" required>
+        <img id="style-preview" src="#" alt="Style Image Preview" style="display:none;" class="style-image">
+    </p>
+    <button type="submit">风格迁移</button>
+</form>
+{% if output_image %}
+<h2>最终效果图</h2>
+<img src="{{ url_for('output_image') }}" alt="Output Image">
+<button onclick="downloadImage()" type="submit">下载图片</button>
+{% endif %}
+<script>
+    var inputImage = document.getElementById('input-image');
+    var inputPreview = document.getElementById('input-preview');
+    inputImage.addEventListener('change', function () {
+        var file = inputImage.files[0];
+        var reader = new FileReader();
+        reader.onload = function () {
+            inputPreview.src = reader.result;
+            inputPreview.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    });
+    var styleImage = document.getElementById('style-image');
+    var stylePreview = document.getElementById('style-preview');
+    styleImage.addEventListener('change', function () {
+        var file = styleImage.files[0];
+        var reader = new FileReader();
+        reader.onload = function () {
+            stylePreview.src = reader.result;
+            stylePreview.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    });
+</script>
+<script>
+function downloadImage() {
+    // 创建一个临时的a元素用于下载
+    var downloadLink = document.createElement("a");
+    downloadLink.href = "{{ url_for('output_image') }}";
+    downloadLink.download = "20.jpg"; // 设置下载文件的默认文件名
+
+    // 触发下载
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink); // 下载完成后移除元素
+}
+</script>
+</body>
+</html>
