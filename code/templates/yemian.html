@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/yemian.css"/>
+    <meta charset="UTF-8">
+    <title>个性化图像生成应用</title>
+</head>
+<body>
+<div class="home">
+    <div class="content">
+        <div class="stars"></div>
+        <h3 class="title">个性化图像生成应用</h3>
+        <h3 class="titles">选择功能</h3>
+        <div class='ribbon'>
+            <a href="{{ url_for('geren') }}"><span>个人主页</span></a>
+            <a href="{{ url_for('pinglun') }}"><span>社区图片</span></a>
+            <a href="{{ url_for('abab') }}"><span>风格迁移</span></a>
+        </div>
+    </div>
+    <div>
+        <a href="{{ url_for('user_login') }}" class="button-link">退出登录</a>
+    </div>
+</body>
+</html>
+
+

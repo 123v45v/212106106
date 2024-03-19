@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/index.css">
+    <link rel="stylesheet" type="text/css" href="/static/shequ.css">
+    <title>社区图片</title>
+</head>
+<body>
+<div>
+    <a href="{{ url_for('zhuye') }}" class="button-link">有空再去完善功能啦，换其他页面看看吧</a>
+</div>
+{% for user in users %}
+    <div>
+        <img src="{{ url_for('get_image' ,image_id=1)}}" alt="Image">
+        <p align="center">这里我想用user.user_id去根据id获取数据库的图像信息并进行展示，但不知道为什么老给我报错</p>
+    </div>
+{% endfor %}
+</body>
+</html>

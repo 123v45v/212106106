@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/index.css">
+    <title>系统风格迁移</title>
+</head>
+<body>
+<div>
+    <a href="{{ url_for('zhuye') }}" class="button-link">退出</a>
+</div>
+<h1>个性化图像生成应用</h1>
+<form method="POST" enctype="multipart/form-data" class="wwdnb">
+    <div>
+        <label for="input-image">上传图片:</label>
+        <input type="file" id="input-image" name="input-image" accept="image/*" required>
+    </div>
+    <img id="input-preview" src="#" alt="Input Image Preview" style="display:none;" class="input-image">
+    <div>
+        <label for="style-image">选择风格图片:</label>
+        <select id="style-image" name="style-image" required onchange="previewStyleImage()">
+            <option value="">请选择风格图片</option>
+            <option value="static/style1.jpg">卡通</option>
+            <option value="static/style2.jpg">抽象</option>
+            <option value="static/style3.jpg">海浪</option>
+            <option value="static/style4.jpg">星空</option>
+            <option value="static/style5.jpg">油画</option>
+        </select>
+        <img id="style-preview" src="#" alt="Style Image Preview" style="display:none; max-width: 300px;">
+    </div>
+    <button type="submit">风格迁移</button>
+</form>
+{% if output_image %}
+<h2>最终效果图</h2>
+<img src="{{ url_for('output_image') }}" alt="Output Image">
+<button onclick="downloadImage()" type="submit">下载图片</button>
+<a href="{{ url_for('wwdnb') }}" class="oo">图片分享</a>
+{% endif %}
+<script>
+    var inputImage = document.getElementById('input-image');
+    var inputPreview = document.getElementById('input-preview');
+    inputImage.addEventListener('change', function () {
+        var file = inputImage.files[0];
+        var reader = new FileReader();
+        reader.onload = function () {
+            inputPreview.src = reader.result;
+            inputPreview.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    });
+
+    function previewStyleImage() {
+        var styleSelect = document.getElementById('style-image');
+        var stylePreview = document.getElementById('style-preview');
+        var selectedStyle = styleSelect.value;
+        if (selectedStyle) {
+            stylePreview.src = selectedStyle;
+            stylePreview.style.display = 'block';
+        }
+    }
+</script>
+<script>
+    function downloadImage() {
+        // 创建一个临时的a元素用于下载
+        var downloadLink = document.createElement("a");
+        downloadLink.href = "{{ url_for('output_image') }}";
+        downloadLink.download = "20.jpg"; // 设置下载文件的默认文件名
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink); // 下载完成后移除元素
+    }
+</script>
+</body>
+</html>

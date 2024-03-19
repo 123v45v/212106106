@@ -1,0 +1,51 @@
+body {
+    background-size: 1450px 900px;
+}
+
+.button-link, button[type="submit"] {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button-link:hover, button[type="submit"]:hover {
+    background-color: #4cae4c; /* 鼠标悬停时的颜色 */
+}
+
+td {
+    text-align: center;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-image: url("12.jpg");
+}
+
+h1 {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

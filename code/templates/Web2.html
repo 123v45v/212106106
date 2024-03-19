@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/Web.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/xinxi.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/base.css"/>
+    <meta charset="UTF-8">
+    <title>个人页面</title>
+</head>
+<div>
+    <a href="{{ url_for('geren') }}" class="button-link">返回查看保存信息</a>
+</div>
+<body text="white">
+<div class="stars"></div>
+<h1 id="start" align="center">
+{% if chenggong %}
+    修改信息成功！点击即可返回查看！
+    {% else %}
+    信息修改
+{% endif %}
+</h1>
+<div id="header">
+    <div class="view">
+        <img src="static/touxiang.jpg"/>
+        <p class="userName">个人信息填写</p>
+    </div>
+</div>
+<form method="post">
+  <div class="form-group">
+    <label for="nickname">姓名:</label>
+    <input type="text" id="nickname" name="nickname" required="">
+  </div>
+
+  <div class="form-group">
+    <label for="schoolName">学校名称:</label>
+    <input type="text" id="schoolName" name="school_name" required="">
+  </div>
+
+  <div class="form-group">
+    <label for="personalIntro">个人简介:</label>
+    <textarea id="personalIntro" name="personal_intro" required=""></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="age">年龄:</label>
+    <input type="number" id="age" name="age" required="">
+  </div>
+
+  <div class="form-group">
+    <label for="gender">性别:</label>
+    <select id="gender" name="gender" required="">
+      <option value="">性别</option>
+      <option value="Male">男</option>
+      <option value="Female">女</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button type="submit">Submit</button>
+  </div>
+</form>
+</body>
+</html>

@@ -7,7 +7,7 @@
 3. 项目介绍：docs/项目介绍.md
 4. 演示视频：docs/演示视频.mp4
 5. 跟踪调试记录：
-   * docs/bugfix: 文档1、文档2、文档3、文档4、文档5
+   * docs/bugfix: 文档1、文档2、文档3、文档4、文档5、文档6、文档7、文档8
 
 ## 运行说明
 
@@ -23,9 +23,13 @@ code/setting.py: 设置图片存储路径以及训练epoch数和学习率等
 
 code/train.py: 用于训练模型
 
-code/app.py: 利用Flask框架调用模型进行使用
+code/app.py: web的基本开发和调用模型进行使用
 
-templates/index.html：用户使用页面
+code/config.py：数据库的配置
+
+code/check.py：用于处理各种逻辑（如登录注册、修改用户信息等）和执行SQL语句
+
+templates/html：各种前端的交互页面
 
 ## 小组分工说明
 

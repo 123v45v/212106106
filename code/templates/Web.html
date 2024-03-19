@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/Web.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/xinxi.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/base.css"/>
+    <meta charset="UTF-8">
+    <title>个人页面</title>
+</head>
+<div>
+    <a href="{{ url_for('zhuye') }}" class="button-link">退出</a>
+</div>
+<body text="white">
+<div class="stars"></div>
+<h1 id="start" align="center">个人页面</h1>
+<div id="header">
+    <div class="view">
+        <img src="static/touxiang.jpg"/>
+        <p class="userName">个人信息</p>
+    </div>
+</div>
+<div id="main">
+        	<div class="my">
+        		<div class="title">
+        			<p>自我介绍</p>
+        			<h2>About&nbsp;Me</h2>
+        		</div>
+        	    <div class="content">
+        	    	<img src="static/123.jpg"  />
+        	    	<div class="right">
+        	    		<div class="box1">
+        	    			<ul>
+        	    				<li><span>姓名：</span><br />{{ user.nickname }}</li>
+        	    				<li><span>学校名称：</span><br />{{ user.school_name }}</li>
+        	    				<li><span>个人简介：</span><br />{{ user.personal_intro }}</li>
+        	    				<li><span>年龄：</span><br />{{ user.age }}</li>
+        	    				<li><span>性别：</span><br />{{ user.gender }}</li>
+        	    			</ul>
+        	    		</div>
+        	    		<div class="box2">
+        	    			<img class="line" src="static/line.jpg"  />
+        	    			<div class="next">
+        	    				<div class="icon"><img class="icon2" src="static/666.jpg" /></div>
+        	    				<h2>Success</h2>
+        	    			</div>
+        	    		</div>
+        	    	</div>
+        	    </div>
+            </div>
+	<a href="{{ url_for('change') }}" style="display: block; text-align: center; margin: auto;"><span></span><span></span><span></span><span></span>修改个人信息</a>
+</div>
+</body>
+</html>
