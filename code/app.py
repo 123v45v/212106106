@@ -2,7 +2,10 @@ from flask import Flask, render_template, request, send_file, redirect, url_for,
 from check import is_existed, exist_user, add_user, update_user_info, get_user_id,shequ
 from config import conn
 from functools import wraps
+from train import NeuralStyleTransfer
 from io import BytesIO
+import settings
+import utils
 import os
 
 cur = conn.cursor()
@@ -72,7 +75,8 @@ def new_index():
                 os.remove(os.path.join(app.config['UPLOAD_FOLDER'], 'style.jpg'))
             content_image.save(os.path.join(app.config['UPLOAD_FOLDER'], 'content.jpg'))
             style_image.save(os.path.join(app.config['UPLOAD_FOLDER'], 'style.jpg'))
-            import train
+            nst = NeuralStyleTransfer()
+            nst.train(20, settings.STEPS_PER_EPOCH)
             return render_template('index.html', output_image=True)
         else:
             return render_template('index.html')
@@ -93,7 +97,8 @@ def new_index2():
             content_image.save(os.path.join(app.config['UPLOAD_FOLDER'], 'content.jpg'))
             with open(os.path.join(app.config['UPLOAD_FOLDER'], 'style.jpg'), 'wb') as f:
                 f.write(open(style_image_name, 'rb').read())
-                import train
+                nst = NeuralStyleTransfer()
+                nst.train(20, settings.STEPS_PER_EPOCH)
             return render_template('index2.html', output_image=True)
         else:
             return render_template('index2.html')

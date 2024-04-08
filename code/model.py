@@ -2,8 +2,6 @@
 import typing
 import tensorflow as tf
 import settings
-
-
 def get_vgg19_model(layers):
     """
     创建并初始化vgg19模型
@@ -18,8 +16,6 @@ def get_vgg19_model(layers):
     # 锁死参数，不进行训练
     model.trainable = False
     return model
-
-
 class NeuralStyleTransferModel(tf.keras.Model):
 
     def __init__(self, content_layers: typing.Dict[str, float] = settings.CONTENT_LAYERS,
@@ -35,7 +31,6 @@ class NeuralStyleTransferModel(tf.keras.Model):
         self.outputs_index_map = dict(zip(layers, range(len(layers))))
         # 创建并初始化vgg网络
         self.vgg = get_vgg19_model(layers)
-
     def call(self, inputs, training=None, mask=None):
         """
         前向传播
